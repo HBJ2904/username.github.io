@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health and Wellness Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .submit-btn {
+            display: block;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Health and Wellness Quiz</h1>
+        <form id="quizForm" onsubmit="return validateForm()">
+            <div class="question">
+                <label for="q1">1. How many glasses of water do you drink daily?</label>
+                <select id="q1" name="q1" required>
+                    <option value="">Select an option</option>
+                    <option value="0-2">0-2</option>
+                    <option value="3-5">3-5</option>
+                    <option value="6-8">6-8</option>
+                    <option value="9+">9+</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q2">2. How many hours of sleep do you get on average?</label>
+                <select id="q2" name="q2" required>
+                    <option value="">Select an option</option>
+                    <option value="less than 5">Less than 5</option>
+                    <option value="5-6">5-6</option>
+                    <option value="7-8">7-8</option>
+                    <option value="more than 8">More than 8</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q3">3. How often do you exercise per week?</label>
+                <select id="q3" name="q3" required>
+                    <option value="">Select an option</option>
+                    <option value="0-1">0-1</option>
+                    <option value="2-3">2-3</option>
+                    <option value="4-5">4-5</option>
+                    <option value="6+">6+</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q4">4. How many servings of fruits and vegetables do you eat daily?</label>
+                <select id="q4" name="q4" required>
+                    <option value="">Select an option</option>
+                    <option value="0-1">0-1</option>
+                    <option value="2-3">2-3</option>
+                    <option value="4-5">4-5</option>
+                    <option value="6+">6+</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const form = document.getElementById('quizForm');
+            const inputs = form.querySelectorAll('select[required]');
+            for (let input of inputs) {
+                if (!input.value) {
+                    alert('Please answer all questions.');
+                    return false;
+                }
+            }
+            const results = {
+                q1: form.q1.value,
+                q2: form.q2.value,
+                q3: form.q3.value,
+                q4: form.q4.value
+            };
+            localStorage.setItem('quizResults', JSON.stringify(results));
+            window.location.href = 'results.html';
+            return false;
+        }
+    </script>
+</body>
+</html>
+    
